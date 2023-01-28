@@ -19,14 +19,14 @@ public class Assignment_1 {
     public static final String WherePart = "{\"name\":\"Ivanov\", \"country\":\"Russia\", \"city\":\"Moscow\", \"age\":\"null\"} ";
 
     public static void main(String[] args) {
-        String paramsNew = WherePart.replace('{', ' ').replace('}', ' ');
-        String[] params = paramsNew.split(",");
+        String whereNew = WherePart.replace('{', ' ').replace('}', ' ');
+        String[] where = whereNew.split(",");
         StringBuilder stringBuilder = new StringBuilder(SqlQuiry);
-        for (int i = 0; i < params.length; i++) {
-            String[] elements = params[i].replace('"', ' ').split(":");
-            if (!"null".equals(elements[1].trim())) {
-                stringBuilder.append(elements[0].trim()).append(" = ").append("'").append(elements[1].trim()).append("'");
-                if (i < params.length - 2)
+        for (int i = 0; i < where.length; i++) {
+            String[] params = where[i].replace('"', ' ').split(":");
+            if (!"null".equals(params[1].trim())) {
+                stringBuilder.append(params[0].trim()).append(" = ").append("'").append(params[1].trim()).append("'");
+                if (i < where.length - 2)
                     stringBuilder.append(" and ");
             }
         }
